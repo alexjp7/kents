@@ -8,10 +8,8 @@
       in -->
     <Navigation/> 
     <v-content>
-      <vue-page-transition name="fade"> 
         <!-- the router view refers to the content of the current page, (see router.js) -->
         <router-view/> 
-      </vue-page-transition>
     </v-content>
   </v-app>
 </template>
@@ -27,12 +25,7 @@ export default {
 };
 </script>
 <style >
-    #home-background {
-        background-color:black; 
-        width:100%;
-    }
-    #page-background {
-        background-color:black; 
-        width:100%;
-    }
+  body {
+    background-color: black;
+  }
 </style>

@@ -1,88 +1,24 @@
 <template>
     <div id="background">
-        <!-- Using rows and colums to set up a grid system 
-           row = horizontal split  -->
-        <v-row>
-            <!-- cols = vertical split -->
-            <v-col :cols="2">
-            <br>
-            <v-card class="mx-auto"  >
-                <v-list shaped>
-                    <v-subheader>sK Bonobos</v-subheader>
-                    <v-list-item-group v-model="item" color="primary">
-                            <v-list-item v-for="(item, i) in members" :key="i">
-                            <v-list-item-icon>
-                                <v-icon v-text="item.icon"></v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title v-text="item.text"></v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list-item-group>
-                </v-list>
-            </v-card>             
-        </v-col>
-        <v-col>
-        <br>
-        <br>
-        <v-row>
+        <v-row >
+            <MemberListDesktop class="hidden-md-and-down"  :members="members"/>
+            <MemberListMobile class="hidden-lg-and-up"  :members="members"/>
             <v-col>
-                <!-- standard for loop directive
-                 this reads as; 'for the first half of quotes in our array of quotes, print the text and author -->
-                <div v-for="(quote) in quotes.slice(0,quotes.length/2)" v-bind:key="quote" >
                 <br>
-                    <vue-flip active-hover="true" width="750px" height="100px">
-                            <div slot="front">
-                                    <v-card dark raised elevation="20" color="primary">
-                                        <v-card-title class="headline mb-1  justify-center">
-                                        " {{quote.text}} ""
-                                        </v-card-title>
-                                    </v-card>
-                                </div> 
-                            <div slot="back">
-                                <v-card  raised elevation="20" >
-                                    <v-card-title class="headline mb-1 justify-center">
-                                        {{quote.author}}
-                                    </v-card-title>
-                                </v-card>
-                            </div> 
-                        </vue-flip>
-                    </div>
-                </v-col>
-                <v-col>
-                    <!-- same as above, but for 2nd half of quotes on right side -->
-                    <div v-for="(quote) in quotes.slice((quotes.length/2) ,quotes.length)" v-bind:key="quote" >
-                            <br>
-                        <vue-flip active-hover="true" width="700px" height="100px">
-                            <div slot="front">
-                                    <v-card color="accent" >
-                                        <v-card dark raised elevation="20">
-                                            <v-card-title class="headline mb-1  justify-center">
-                                            " {{quote.text}} ""
-                                            </v-card-title>
-                                        </v-card>
-                                    </v-card>
-                                </div> 
-                            <div slot="back">
-                                <v-card color="accent">
-                                    <v-card  raised elevation="20">
-                                        <v-card-title class="headline mb-1 justify-center">
-                                            {{quote.author}}
-                                        </v-card-title>
-                                    </v-card>
-                                </v-card>
-                            </div> 
-                        </vue-flip>
-                    </div>                        
-                </v-col>
-            </v-row>
+                <br> 
+                <QuoteBoardDesktop class="hidden-md-and-down" :quotes="quotes"/> 
+                <QuoteBoardMobile class="hidden-lg-and-up" :quotes="quotes"/> 
             </v-col>
         </v-row>
     </div>
 </template>
 
 <script>
-import VueFlip from 'vue-flip';
+    import QuoteBoardDesktop from "@/components/QuoteBoardDesktop";
+    import QuoteBoardMobile from "@/components/QuoteBoardMobile";
+    import MemberListDesktop from "@/components/MemberListDesktop.vue";
+    import MemberListMobile from "@/components/MemberListMobile.vue";
+
 export default {
     //The data component relates to any of the static or dynamic data loaded into our application
     data: () => ({
@@ -91,22 +27,27 @@ export default {
         { text: 'Immi', icon: 'mdi-crown' },
         { text: 'Hamato', icon: 'mdi-weight-lifter' },
         { text: 'Alexjp', icon: 'mdi-thumb-up' },
-        { text: 'Beetle', icon: 'mdi-chart-bell-curve' },
+        { text: 'Beetle', icon: 'mdi-fire' },
         { text: 'Frictionburn', icon: 'mdi-heart' },
         { text: 'G', icon: 'mdi-rss-off' },
         { text: 'Pap', icon: 'mdi-volume-off' },
         { text: 'Fishy', icon: 'mdi-trending-up' },
-        { text: 'Darren', icon: 'mdi-thought-bubble' },
         { text: 'Pavey', icon: 'mdi-slot-machine' },
         { text: 'Rose', icon: 'mdi-matrix' },
         { text: 'Kevin', icon: 'mdi-kabaddi' },
         { text: 'Fuels', icon: 'mdi-fuel' },
+        { text: 'Suffa', icon:  'mdi-battery-low' },
         { text: 'Willy', icon: 'mdi-glass-mug-variant' },
-        { text: 'Ej', icon: 'mdi-bottle-tonic-skull' },
+        { text: 'Darren', icon: 'mdi-thought-bubble' },
         { text: 'Jade', icon: 'mdi-glass-cocktail' },
         { text: 'Leafy', icon: 'mdi-check-circle' },
-        { text: 'Zevos', icon:  'mdi-bomb' },
+        { text: 'Zevos', icon:  'mdi-ear-hearing-off' },
         { text: 'Hop', icon:  'mdi-emoticon-angry-outline' },
+        { text: 'Magnet', icon:  'mdi-sleep' },
+        { text: 'Jenna', icon:  'mdi-air-conditioner' },
+        { text: 'Luca', icon:  'mdi-emoticon-poop' },
+        { text: 'Neo', icon:  'mdi-language-csharp' },
+        { text: 'Ej', icon: 'mdi-bottle-tonic-skull' },
       ],
 
       quotes: [
@@ -130,7 +71,10 @@ export default {
 
     }),
     components: {
-    'vue-flip': VueFlip
+        QuoteBoardDesktop,
+        QuoteBoardMobile,
+        MemberListDesktop,
+        MemberListMobile
     },
     methods: {
 
@@ -144,7 +88,9 @@ export default {
  #background {
      width:100%;
      height:100%;
-     background-color:#4d6371;
+     background-color:#474747;
+     background-image:url("../assets/homeBkg.png");
+     background-repeat: repeat-y;
  }
 
 .content {
