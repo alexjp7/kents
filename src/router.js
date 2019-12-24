@@ -4,6 +4,7 @@ import Router from "vue-router";
 import Home from "@/views/Home.vue";
 import Quotes from "@/views/Quotes.vue";
 import Constitution from "@/views/Constitution.vue";
+import TicTac from "@/components/Board.vue";
 
 Vue.use(Router);
 
@@ -31,6 +32,11 @@ const router = new Router({
         path: "/Constitution",
         name: "constituiton",
         component: Constitution,
+    },
+    {
+        path: "/tictac",
+        name: "tictac",
+        component: TicTac,
     }
     ]
 })
