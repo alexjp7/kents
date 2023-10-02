@@ -90,7 +90,9 @@ export default {
      height:100%;
      background-color:#474747;
      background-image:url("../assets/homeBkg.png");
-     background-repeat: repeat-y;
+     background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
  }
 
 .content {

@@ -28,6 +28,9 @@ export default {
      height:100%;
      width:100%;
       margin: 0px;
+      background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
  }
 
 #title {
