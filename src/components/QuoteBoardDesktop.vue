@@ -23,18 +23,18 @@
             </vue-flip>
         </v-col>
         <v-col >
-        <vue-flip active-hover="true" width="85%" height="100px">
+        <vue-flip  v-if="index+1 <quotes.length" active-hover="true" width="85%" height="100px">
                 <div slot="front">
                         <v-card dark raised elevation="20" color="accent">
                             <v-card-title class="justify-center">
-                            " {{quotes[index+1].text}} ""
+                            " {{quotes[index+1]?.text}} ""
                             </v-card-title>
                         </v-card>
                     </div> 
                 <div slot="back">
                     <v-card  raised elevation="20" >
                         <v-card-title class="headline mb-1 justify-center">
-                            {{quotes[index+1].author}}
+                            {{quotes[index+1]?.author}}
                         </v-card-title>
                     </v-card>
                 </div> 
